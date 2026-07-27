@@ -41,13 +41,16 @@ Query several databases, breadth first then filter. Direct tools:
 - **Consensus** (`search`) — cross-database semantic search + citation counts.
 - **ClinicalTrials.gov** (`search_trials`) — optional, for the trial pipeline.
 
-Broader indexes (query via their open REST APIs with web fetch / web search when
-no direct connector is installed — all are free and need no key):
-
-- **Europe PMC** — `https://www.ebi.ac.uk/europepmc/webservices/rest/search`
-- **OpenAlex** — `https://api.openalex.org/works`
-- **Semantic Scholar** — `https://api.semanticscholar.org/graph/v1/paper/search`
-- **CrossRef** — `https://api.crossref.org/works`
+**Broader coverage / targeted lookups:** if the `paper-lookup` skill is installed,
+use it for arXiv, PMC full text, CORE, Unpaywall open-access links, Europe PMC,
+OpenAlex, Semantic Scholar, and CrossRef — it already knows the right endpoint,
+identifier format, and rate limit per database, so don't re-derive that logic
+here. If `paper-lookup` isn't installed, query Europe PMC
+(`https://www.ebi.ac.uk/europepmc/webservices/rest/search`), OpenAlex
+(`https://api.openalex.org/works`), Semantic Scholar
+(`https://api.semanticscholar.org/graph/v1/paper/search`), or CrossRef
+(`https://api.crossref.org/works`) directly via web fetch — all free, no key
+required.
 
 Guidance: default window is the **last 30 days** (last 7 days for scheduled
 weekly runs). Cast a wide net — aim to screen **60–100+ candidates across
@@ -69,11 +72,16 @@ one-line reason.
 
 ## Step 4 — Compare against the standard benchmark
 
-For every quantitative finding, place it next to the field-standard benchmark
-from the profile (e.g. DBS-for-TRD response ~48%, remission ~35%, symptom
-improvement ~47%). State whether the new result is **above, at, or below**
-benchmark and by how much. Never fabricate a statistic; if a value is missing,
-mark it "not reported" and flag it as a follow-up.
+For every quantitative finding, place it next to the field-standard benchmark.
+If the profile defines fixed benchmark values, use those directly. If the
+profile instead calls for **dynamic** benchmarking (no single fixed number
+fits the field), find the most relevant recent meta-analysis / systematic
+review / representative study for that specific sub-topic and use its
+reported value as the comparison point — always naming that source inline.
+State whether the new result is **above, at, or below** benchmark and by how
+much. Never fabricate a statistic; if no benchmark can be found or a value is
+missing, mark it "not reported" / "no established benchmark found" and flag
+it as a follow-up.
 
 ## Step 5 — Produce THREE deliverables
 
@@ -102,6 +110,13 @@ configured, send them (e.g. save to Google Drive / Notion, or email). When first
 set up, offer this: "Want me to run LitPilot every Monday at 6 PM and share the
 weekly update automatically?" To schedule, use a weekly Monday 18:00 trigger.
 Keep scheduled digests short (7-day window) so each update stays fresh.
+
+**Optional sync after delivery:** if `zotero-bridge` is installed, offer to check
+the run's papers against the user's Zotero library and add the new ones (only
+with explicit confirmation — see that skill's safety notes). If
+`notebooklm-bridge` is installed and a NotebookLM connector is configured, offer
+to push the High/Medium papers into the topic's NotebookLM notebook. Both are
+optional, one-line offers — don't run them unasked.
 
 ## Reference files
 
