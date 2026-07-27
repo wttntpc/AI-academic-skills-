@@ -1,0 +1,23 @@
+{
+  "skill_name": "litpilot",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Check for new papers on closed-loop neuromodulation in MDD from the last month and tell me which ones actually matter.",
+      "expected_output": "A ranked, benchmark-compared digest: bottom line, ranked table with relevance scores, benchmark comparison table, paper cards, and follow-up actions.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I only care about sham-controlled human trials of tACS or tDCS for depression. What's new and how does it compare to the standard response rate?",
+      "expected_output": "Filtered to sham-controlled human tACS/tDCS studies, each finding compared against the ~48% response benchmark, with above/at/below reads.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Keep me updated on EEG-biomarker-driven adaptive stimulation for depression every Monday morning.",
+      "expected_output": "Runs the digest for a tight recent window AND offers to schedule a recurring Monday 08:00 run.",
+      "files": []
+    }
+  ]
+}
