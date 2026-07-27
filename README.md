@@ -119,6 +119,28 @@ whole loop a researcher actually needs:
    writes doesn't just live in a chat transcript; it lands in the reference manager and
    notebook tool you actually already use.
 
+## Known gaps
+
+This set intentionally does **not** include a figure/schematic-generation or a
+statistical-analysis skill:
+
+- **Figures/schematics** (PRISMA flow diagrams, conceptual diagrams, timelines): a candidate
+  exists upstream (K-Dense's `scientific-schematics`), but it requires a paid third-party
+  API key (OpenRouter) to generate images. Deliberately left out of this mirror. If your
+  Claude Code host already has a general-purpose visualization skill (many do, e.g. a
+  `dataviz`/`data-visualization`/`create-viz` skill), use that instead — `scientific-writing`
+  and `peer-review` are explicit that they don't generate images themselves, so *something*
+  needs to fill this role.
+- **Statistical analysis / meta-analysis** (effect-size pooling, forest plots, quantitative
+  synthesis): same reasoning — use whatever general-purpose statistics/data-analysis skill
+  your host provides (e.g. a `statistical-analysis` skill), rather than a dedicated skill in
+  this set. `peer-review`'s `audit_statistics_reproducibility.py` *checks* reported numbers
+  for internal consistency, but does not run new analyses.
+
+If your host has neither, revisit `k-dense-ai/scientific-agent-skills` — it has many more
+domain-specific skills (RDKit, Scanpy, PyTorch Lightning, and 70+ others) than the ones
+mirrored here; this repo only pulled the general academic-workflow subset.
+
 ## Notes on the unlicensed skills
 
 `litpilot`, `research-organizer`, and `knowledge-base` are mirrored here without a published
