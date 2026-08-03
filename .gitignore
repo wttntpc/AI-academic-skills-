@@ -1,0 +1,4 @@
+# Personal config — holds local paths/keys, never publish
+paper-review/config.yaml
+__pycache__/
+*.pyc
