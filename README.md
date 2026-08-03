@@ -155,6 +155,31 @@ If your host has neither, revisit `k-dense-ai/scientific-agent-skills` — it ha
 domain-specific skills (RDKit, Scanpy, PyTorch Lightning, and 70+ others) than the ones
 mirrored here; this repo only pulled the general academic-workflow subset.
 
+## See also — companion tools, not bundled here
+
+These two repos by [drpwchen](https://github.com/drpwchen) each ship an *optional* Claude Skill
+wrapper, but the wrapper is not self-contained the way every skill above is — its `SKILL.md`
+hardcodes the absolute path of your own clone of the full repo and calls scripts that live at
+that repo's root, not inside the skill folder. Copying just the skill folder (the way you'd
+copy `peer-review/` or `paper-lookup/`) would ship a broken reference on anyone else's machine.
+So instead of mirroring them here, they're documented as companion tools you clone and wire up
+separately:
+
+| Tool | What it adds | Source | Setup weight |
+|---|---|---|---|
+| **paper-download** (skill in [drpwchen/paper-fetch](https://github.com/drpwchen/paper-fetch)) | Fetches full-text PDFs `paper-lookup` couldn't reach: Unpaywall → Elsevier/Wiley/Springer TDM → your own institutional proxy → SFX link, land as linked (not uploaded) Zotero attachments. | drpwchen/paper-fetch, MIT | Heavy: needs Zotero desktop running + 3 plugins (Better BibTeX, ZotMoov, Zotadata) + a Zotero MCP + a Semantic Scholar MCP; the institutional-proxy route additionally needs your own library login stored in a local secret store (never enter it via chat) and a `patchright`/`ddddocr` install. The base `paper_fetch.py` (Unpaywall/TDM routes only, no Zotero) is much lighter — `pip install requests pyyaml` is enough. |
+| **textbook-to-md** + **figure-remap** (skills in [drpwchen/textbook-to-note](https://github.com/drpwchen/textbook-to-note)) | Converts PDF/EPUB textbooks to greppable markdown (0-token, no vision model), plus on-demand single-figure extraction with QC verification for notes that need a specific figure. | drpwchen/textbook-to-note, MIT | Light core (`pymupdf`, `pdfplumber`, `Pillow`, `numpy` — CPU-only, no GPU required); OCR/vision-model fallbacks for scanned books are optional extras, off by default. |
+
+To use either: `git clone` the source repo somewhere stable, `pip install` its core
+requirements, then copy its `skills/<name>/` folder into `~/.claude/skills/<name>/` and replace
+the `{REPO}` placeholder near the top of its `SKILL.md` with the absolute path of your clone.
+
+**Deliberately not listed here** (assessed and skipped, not because they're bad tools, but
+because they don't fit *this* set): [drpwchen/paper-radar](https://github.com/drpwchen/paper-radar)
+duplicates what `litpilot` already does and needs a 24/7 Cloudflare deployment to get its extra
+value (cross-device synced ratings); [drpwchen/lecture-to-notes](https://github.com/drpwchen/lecture-to-notes)
+is a course-recording tool, not a literature-pipeline one.
+
 ## Notes on the unlicensed skills
 
 `litpilot`, `research-organizer`, and `knowledge-base` are mirrored here without a published
