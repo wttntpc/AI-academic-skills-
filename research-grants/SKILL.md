@@ -271,6 +271,11 @@ This skill works effectively with:
 - **Research Lookup**: For finding relevant citations and prior work
 - **Data Visualization**: For creating effective figures
 
+> This mirror also documents a concrete composed workflow for building the evidence base
+> behind a Significance/Background section — combining an existing Zotero library, widened
+> `litpilot` runs, `paper-review` appraisal, and `notebooklm-bridge` synthesis before writing:
+> see [`workflows/grant-evidence-base.md`](../workflows/grant-evidence-base.md).
+
 ## Resources
 
 This skill includes comprehensive reference files covering specific aspects of grant writing:

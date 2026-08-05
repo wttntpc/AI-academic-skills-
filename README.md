@@ -26,6 +26,15 @@ Each stage is independent — use any single skill on its own, or chain them for
 literature-to-manuscript pipeline. The **Sync** stage is optional and depends on what you
 already use (Zotero, NotebookLM, both, or neither).
 
+## Workflows
+
+Multi-skill recipes that aren't a single skill on their own:
+
+- [`workflows/grant-evidence-base.md`](workflows/grant-evidence-base.md) — before drafting a
+  grant proposal, ground it in your **existing Zotero library** *and* fresh literature (past
+  `litpilot`'s default 30-day monitoring window), all appraised through `paper-review` and
+  synthesized via `notebooklm-bridge` before `research-grants` ever sees it.
+
 ## Skills
 
 | Skill | Stage | What it does | Source | License |

@@ -124,3 +124,12 @@ optional, one-line offers — don't run them unasked.
 - `references/output_template.md` — the exact written-digest layout.
 - `references/comparison_outputs.md` — the Excel workbook and visualization specs.
 - `references/example_digest.md` — a filled-in example on real papers.
+
+## Building a proposal's evidence base, not just a weekly digest
+
+This skill's default 30-day (or 7-day) window is tuned for "what's new," not for compiling
+the multi-year literature base a grant proposal's Significance section needs. If that's the
+goal, override the window explicitly (see Step 2) and see
+[`workflows/grant-evidence-base.md`](../workflows/grant-evidence-base.md) for how to combine
+a widened LitPilot run with your existing Zotero library, `paper-review` appraisal, and
+`notebooklm-bridge` synthesis before handing anything to `research-grants`.

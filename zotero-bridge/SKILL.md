@@ -91,6 +91,15 @@ immediately on 429.
    confirm which items (all / a subset) before writing.
 4. Only after explicit confirmation, add the new ones via the Web API (backend 1 can't write).
 
+## Workflow: using your existing library as an evidence base
+
+The workflow above is new-papers-in → check-against-library. Backend 1's SQL query and
+Backend 2's lookup call both generalize to a broader read — listing or searching your
+existing library on a topic, not just checking one DOI — which is useful before writing a
+grant proposal: see [`workflows/grant-evidence-base.md`](../workflows/grant-evidence-base.md)
+for pulling your existing collection as a starting evidence pool, appraising it with
+`paper-review` alongside newly found papers, and feeding the result into `research-grants`.
+
 ## Safety notes
 
 - Never write to the live `zotero.sqlite` file directly — always go through the Web API for

@@ -57,6 +57,10 @@ directly from NotebookLM's index. This is a second, independent retrieval path a
 NotebookLM's semantic search across full-text sources rather than the user's own structured
 notes and links.
 
+For a concrete case where this query-back step matters — synthesizing an appraised evidence
+set before it goes into a grant proposal — see
+[`workflows/grant-evidence-base.md`](../workflows/grant-evidence-base.md).
+
 ### 4. Report back
 
 - Which notebook the sources landed in (name or ID).
