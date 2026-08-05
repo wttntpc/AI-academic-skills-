@@ -26,14 +26,10 @@ Each stage is independent — use any single skill on its own, or chain them for
 literature-to-manuscript pipeline. The **Sync** stage is optional and depends on what you
 already use (Zotero, NotebookLM, both, or neither).
 
-## Workflows
-
-Multi-skill recipes that aren't a single skill on their own:
-
-- [`workflows/grant-evidence-base.md`](workflows/grant-evidence-base.md) — before drafting a
-  grant proposal, ground it in your **existing Zotero library** *and* fresh literature (past
-  `litpilot`'s default 30-day monitoring window), all appraised through `paper-review` and
-  synthesized via `notebooklm-bridge` before `research-grants` ever sees it.
+One skill, `grant-evidence-base`, deliberately breaks the linear order above: it loops an
+*existing* Sync-stage asset (your Zotero library) back into Find/Appraise, specifically to
+build a grant proposal's evidence base before Write — see its row below and its own
+`SKILL.md` for why that detour exists.
 
 ## Skills
 
@@ -50,6 +46,7 @@ Multi-skill recipes that aren't a single skill on their own:
 | [`peer-review`](peer-review/) | Critique | Prepares evidence-bounded, constructive peer-review drafts: claim–evidence checks, methods/statistics/reproducibility/ethics/citation critique, confidentiality-first. Local-only, no network calls. | [k-dense-ai/scientific-agent-skills](https://github.com/k-dense-ai/scientific-agent-skills) | MIT |
 | [`zotero-bridge`](zotero-bridge/) | Sync | Checks whether papers found by `litpilot`/`paper-lookup` already exist in your Zotero library, and (with confirmation) adds new ones — local read-only SQLite snapshot or Zotero Web API. | Original, written for this collection | MIT |
 | [`notebooklm-bridge`](notebooklm-bridge/) | Sync | Pushes found papers / organized notes into a Google NotebookLM notebook for semantic Q&A and audio/video overviews. Requires a NotebookLM MCP connector configured in the host. | Original, written for this collection | MIT |
+| [`grant-evidence-base`](grant-evidence-base/) | Orchestrate | No new mechanism — sequences `zotero-bridge` (read existing library) + `litpilot`/`paper-lookup` (widened past the 30-day default) + `paper-review` (appraise all of it) + `notebooklm-bridge` (synthesize) before handing off to `research-grants`/`scientific-writing`. For building a proposal's Significance/Background section, not routine monitoring. | Original, written for this collection | MIT |
 
 ## Installation
 
@@ -78,7 +75,8 @@ macOS / Linux / Git Bash on Windows:
 ```bash
 git clone https://github.com/wttntpc/academic-skills- ~/academic-skills-tmp
 for skill in litpilot paper-lookup paper-review paper-digest research-organizer knowledge-base \
-             scientific-writing research-grants peer-review zotero-bridge notebooklm-bridge; do
+             scientific-writing research-grants peer-review zotero-bridge notebooklm-bridge \
+             grant-evidence-base; do
   cp -r ~/academic-skills-tmp/$skill ~/.claude/skills/
 done
 ```
@@ -87,7 +85,8 @@ Windows PowerShell:
 ```powershell
 git clone https://github.com/wttntpc/academic-skills- "$env:USERPROFILE\academic-skills-tmp"
 $skills = "litpilot","paper-lookup","paper-review","paper-digest","research-organizer","knowledge-base",
-          "scientific-writing","research-grants","peer-review","zotero-bridge","notebooklm-bridge"
+          "scientific-writing","research-grants","peer-review","zotero-bridge","notebooklm-bridge",
+          "grant-evidence-base"
 foreach ($s in $skills) {
   Copy-Item -Recurse "$env:USERPROFILE\academic-skills-tmp\$s" "$env:USERPROFILE\.claude\skills\"
 }
@@ -120,8 +119,11 @@ foreach ($s in $skills) {
   always-on network calls are Semantic Scholar, PubMed, CrossRef, and open-access auto-fetch for
   the live reference-verification step. `config.yaml` is git-ignored — never commit it, it can
   hold local paths.
+- **`grant-evidence-base`**: has no config of its own — it inherits every prerequisite of the
+  five skills it orchestrates (Zotero credentials for `zotero-bridge`, a NotebookLM MCP
+  connector for `notebooklm-bridge`, `paper-review`'s `config.yaml`). Install those first.
 
-## Why these eleven, together
+## Why these twelve, together
 
 Most literature tools stop at "find papers" or "summarize this PDF." This set covers the
 whole loop a researcher actually needs:
@@ -141,6 +143,10 @@ whole loop a researcher actually needs:
 6. **zotero-bridge / notebooklm-bridge** — optional glue so what this pipeline finds and
    writes doesn't just live in a chat transcript; it lands in the reference manager and
    notebook tool you actually already use.
+7. **grant-evidence-base** — the other six only chain forward (Find → ... → Sync). This one
+   loops backward on purpose: it pulls what `zotero-bridge` already synced *back* into
+   Find/Appraise so a grant's evidence base isn't limited to `litpilot`'s 30-day monitoring
+   window. No new mechanism — it's an orchestrator, not a twelfth capability.
 
 ## Known gaps
 

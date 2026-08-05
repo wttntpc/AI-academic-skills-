@@ -271,10 +271,10 @@ This skill works effectively with:
 - **Research Lookup**: For finding relevant citations and prior work
 - **Data Visualization**: For creating effective figures
 
-> This mirror also documents a concrete composed workflow for building the evidence base
-> behind a Significance/Background section — combining an existing Zotero library, widened
-> `litpilot` runs, `paper-review` appraisal, and `notebooklm-bridge` synthesis before writing:
-> see [`workflows/grant-evidence-base.md`](../workflows/grant-evidence-base.md).
+> This mirror also includes a [`grant-evidence-base`](../grant-evidence-base/) skill that
+> builds the evidence base behind a Significance/Background section — combining an existing
+> Zotero library, widened `litpilot` runs, `paper-review` appraisal, and `notebooklm-bridge`
+> synthesis — before handing off here.
 
 ## Resources
 

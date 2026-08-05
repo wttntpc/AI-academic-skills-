@@ -58,8 +58,8 @@ NotebookLM's semantic search across full-text sources rather than the user's own
 notes and links.
 
 For a concrete case where this query-back step matters — synthesizing an appraised evidence
-set before it goes into a grant proposal — see
-[`workflows/grant-evidence-base.md`](../workflows/grant-evidence-base.md).
+set before it goes into a grant proposal — see the
+[`grant-evidence-base`](../grant-evidence-base/) skill.
 
 ### 4. Report back
 

@@ -129,7 +129,7 @@ optional, one-line offers — don't run them unasked.
 
 This skill's default 30-day (or 7-day) window is tuned for "what's new," not for compiling
 the multi-year literature base a grant proposal's Significance section needs. If that's the
-goal, override the window explicitly (see Step 2) and see
-[`workflows/grant-evidence-base.md`](../workflows/grant-evidence-base.md) for how to combine
-a widened LitPilot run with your existing Zotero library, `paper-review` appraisal, and
+goal, override the window explicitly (see Step 2) and see the
+[`grant-evidence-base`](../grant-evidence-base/) skill, which orchestrates a widened LitPilot
+run together with your existing Zotero library, `paper-review` appraisal, and
 `notebooklm-bridge` synthesis before handing anything to `research-grants`.

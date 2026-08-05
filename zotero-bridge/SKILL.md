@@ -96,9 +96,9 @@ immediately on 429.
 The workflow above is new-papers-in → check-against-library. Backend 1's SQL query and
 Backend 2's lookup call both generalize to a broader read — listing or searching your
 existing library on a topic, not just checking one DOI — which is useful before writing a
-grant proposal: see [`workflows/grant-evidence-base.md`](../workflows/grant-evidence-base.md)
-for pulling your existing collection as a starting evidence pool, appraising it with
-`paper-review` alongside newly found papers, and feeding the result into `research-grants`.
+grant proposal: see the [`grant-evidence-base`](../grant-evidence-base/) skill, which pulls
+your existing collection as a starting evidence pool, appraises it with `paper-review`
+alongside newly found papers, and feeds the result into `research-grants`.
 
 ## Safety notes
 
